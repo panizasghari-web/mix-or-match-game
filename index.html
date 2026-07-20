@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mix or Match Game</title>
+    <link rel="stylesheet" href="./assets/css/output.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./assets/images/favicon/site.webmanifest" />
+  </head>
+
+  <body class="overflow-x-hidden cursor-ghost">
+    <main
+      id="main-page"
+      class="w-full min-h-screen bg-[radial-gradient(#9D5900,#3D2200)] flex justify-center items-center relative"
+    >
+      <!-- ###################################### OVERLAY ######################################-->
+      <div
+        id="start-overlay-text"
+        class="overlay-text animate-overlay-anime flex w-full h-screen top-0 left-0 fixed text-[#ff7402] justify-center items-center font-creepy text-[2.8rem] md:text-[5.5rem] lg:text-[7.5rem] cursor-ghost-pointer z-50"
+      >
+        <p
+          class="w-full h-full flex justify-center items-center overflow-hidden animate-overlay-text-anime"
+        >
+          Click here to start...
+        </p>
+      </div>
+      <!-- *********************************** -->
+      <div
+        id="game-over-text"
+        class="overlay-text animate-overlay-anime hidden w-full h-screen top-0 left-0 fixed text-[#ff7402] flex-col justify-evenly items-center font-creepy cursor-ghost-pointer z-50"
+      >
+        <p
+          class="animate-overlay-text-anime w-full h-[5%] flex justify-center items-center text-[3rem] md:text-[5.5rem] lg:text-[7.5rem]"
+        >
+          GAME OVER!
+        </p>
+        <p
+          class="animate-overlay-text-anime w-full h-[5%] flex justify-center items-center text-[1.5rem] md:text-[2rem] lg:text-[3rem]"
+        >
+          Click to restart...
+        </p>
+      </div>
+      <!-- *********************************** -->
+      <div
+        id="victory-text"
+        class="overlay-text animate-overlay-anime hidden w-full h-screen top-0 left-0 fixed text-[#ff7402] flex-col justify-evenly items-center font-creepy cursor-ghost-pointer z-50"
+      >
+        <p
+          class="animate-overlay-text-anime w-full h-[5%] flex justify-center items-center text-[3rem] md:text-[5.5rem] lg:text-[7.5rem]"
+        >
+          YOU WIN!
+        </p>
+        <p
+          class="animate-overlay-text-anime w-full h-[5%] flex justify-center items-center text-[1.5rem] md:text-[2rem] lg:text-[3rem]"
+        >
+          Click to restart...
+        </p>
+      </div>
+      <!-- ###################################### OVERLAY ######################################-->
+      <section id="game" class="w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] pb-10">
+        <!-- ###################################### HEADING ######################################-->
+        <div
+          id="page-title"
+          class="w-full h-14 pt-10 md:h-28 md:pt-0 flex flex-col justify-center items-center"
+        >
+          <h1
+            class="text-[3rem] sm:text-[4rem] md:text-[5rem] font-creepy text-[#ff7402]"
+          >
+            Mix or Match
+          </h1>
+        </div>
+        <!-- ###################################### HEADING ######################################-->
+
+        <!-- ###################################### GAME INFO ######################################-->
+        <div
+          id="game-info-container"
+          class="w-full h-[15vh] overflow-hidden text-[#ffBB89] font-bold text-[2.5rem] font-lunacy flex justify-between items-center"
+        >
+          <!-- Time: -->
+          <div id="game-time" class="w-30 md:w-36 h-full flex items-center">
+            <span class="pr-2">Time:</span>
+            <span id="game-time-span">100</span>
+          </div>
+          <!-- Flips: -->
+          <div
+            id="game-flips"
+            class="w-30 md:w-36 h-full flex justify-end items-center"
+          >
+            <span class="pr-2">Flips:</span>
+            <span id="game-flips-span">0</span>
+          </div>
+        </div>
+        <!-- ###################################### GAME INFO ######################################-->
+
+        <!-- ###################################### CARDS ######################################-->
+        <div id="cards" class="w-full grid grid-cols-4 gap-4">
+          <!-- ####################################################################### -->
+          <div
+            data-status="Cauldron"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 radius hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider w-[70%] spider-hover absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Cauldron.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Dracula"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider w-[70%] spider-hover absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Dracula.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Skull"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Skull.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Pumpkin"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Pumpkin.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Skull"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Skull.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Ghost"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Ghost.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Bones"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Bones.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Bat"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Bat.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Cauldron"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Cauldron.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Eye"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element cauldron w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Eye.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Dracula"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element cauldron w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Dracula.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Eye"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element cauldron w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Eye.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Bones"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element cauldron w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Bones.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Ghost"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element cauldron w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Ghost.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Pumpkin"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element cauldron w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Pumpkin.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+          <div
+            data-status="Bat"
+            class="each-card group w-full md:max-w-30 lg:max-w-34 justify-self-center aspect-5/7 hover:cursor-ghost-pointer relative overflow-hidden perspective-[1000px]"
+          >
+            <div
+              class="inner-card w-full h-full transition-transform duration-500 transform-3d"
+            >
+              <div
+                class="back-card w-full h-full bg-black border-2 border-[#FF6D00] absolute flex justify-center items-center inset-0 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-bottom-right cobweb-hover w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/Cobweb.png"
+                />
+                <img
+                  class="spider spider-hover w-[70%] absolute top-0"
+                  src="./assets/images/Spider.png"
+                />
+              </div>
+              <div
+                class="front-card w-full h-full absolute bg-[#ffBB89] border-2 border-[#333333] inset-0 rotate-y-180 backface-hidden"
+              >
+                <img
+                  class="cobweb-top-left cobweb-hover w-[40%] absolute rotate-270 top-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-bottom-left cobweb-hover w-[40%] absolute rotate-180 bottom-0 left-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-hover cobweb-bottom-right w-[40%] absolute rotate-90 bottom-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="cobweb-top-right cobweb-hover w-[40%] absolute top-0 right-0"
+                  src="./assets/images/CobwebGrey.png"
+                />
+                <img
+                  class="back-element cauldron w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  src="./assets/images/Bat.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ####################################################################### -->
+        </div>
+        <!-- ###################################### CARDS ######################################-->
+      </section>
+    </main>
+    <script src="./assets/js/master.js"></script>
+  </body>
+</html>
