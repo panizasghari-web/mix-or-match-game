@@ -60,7 +60,6 @@ https://panizasghari-web.github.io/mix-or-match-game/
 - JavaScript Functions
 - Responsive Layout with Tailwind CSS
 
----
 ## 👩‍💻 Author
 
 Made with ❤️ by <ins>Paniz Asghari</ins>
